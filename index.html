@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0807" />
+  <title>Veg Biryani House — Pure Vegetarian Dum Biryani</title>
+  <meta name="description" content="Veg, Paneer, Mushroom, Soya and more — slow-cooked pure vegetarian dum biryanis. Scroll to serve the next dish." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="loading">
+  <h1 class="sr-only">Veg Biryani House — pure vegetarian dum biryani</h1>
+  <div class="grain"></div>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="l-icon">
+      <i></i><i></i><i></i>
+      <svg viewBox="0 0 34 30" fill="currentColor" aria-hidden="true"><path d="M3 12h28l-2 9a8 8 0 0 1-8 6h-8a8 8 0 0 1-8-6z"/><rect x="1" y="9" width="32" height="3" rx="1.5"/></svg>
+    </div>
+    <div class="l-count"><span id="lnum">0</span><sup>%</sup></div>
+    <p class="l-cap">Lifting the lid</p>
+    <div class="l-bar"><i id="lbar"></i></div>
+  </div>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <a class="brand" href="#top"><i></i>Veg Biryani House</a>
+    <button class="order-btn" id="openCart" aria-label="Open your order">Order <b id="cartCount">0</b></button>
+  </header>
+
+  <main id="top">
+    <!-- SCROLL SHOWCASE -->
+    <section class="track" id="track">
+      <div class="stage sealed" id="stage">
+
+        <!-- left copy -->
+        <div class="copy" id="copy">
+          <div class="num" style="--k:0"><span id="numV">01</span><small id="numT">/ 10</small></div>
+          <div class="tag" style="--k:1"><span class="veg-dot" title="Pure vegetarian"></span><span id="tagV"></span></div>
+          <h2 class="name" style="--k:2"><span id="n1"></span><em id="n2"></em></h2>
+          <p class="desc" style="--k:3" id="descV"></p>
+          <div class="buy" style="--k:4">
+            <span class="price">₹<span id="priceV"></span><small>/ full pot</small></span>
+            <button class="add" id="addBtn">Add to order +</button>
+          </div>
+        </div>
+
+        <!-- centre visual -->
+        <div class="visual" id="visual">
+          <div class="steam"><i></i><i></i><i></i></div>
+
+          <svg class="pot" viewBox="0 0 480 360" aria-hidden="true">
+            <defs>
+              <linearGradient id="brass" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#4a2e0e"/><stop offset=".22" stop-color="#b98531"/>
+                <stop offset=".42" stop-color="#f3d58a"/><stop offset=".62" stop-color="#b57d2a"/>
+                <stop offset="1" stop-color="#43290b"/>
+              </linearGradient>
+              <linearGradient id="dough" x1="0" x2="1">
+                <stop offset="0" stop-color="#a97c43"/><stop offset=".5" stop-color="#e3c08b"/><stop offset="1" stop-color="#a97c43"/>
+              </linearGradient>
+              <radialGradient id="rice" cx=".5" cy=".3" r=".8">
+                <stop offset="0" style="stop-color:var(--rice1)"/><stop offset="1" style="stop-color:var(--rice2)"/>
+              </radialGradient>
+              <clipPath id="moundClip"><path d="M62 152 Q80 58 240 50 Q400 58 418 152 Q240 198 62 152 Z"/></clipPath>
+            </defs>
+
+            <ellipse cx="240" cy="338" rx="170" ry="14" fill="#000" opacity=".55"/>
+            <!-- handles -->
+            <path d="M64 168 C6 150 8 236 76 232" fill="none" stroke="url(#brass)" stroke-width="16" stroke-linecap="round"/>
+            <path d="M416 168 C474 150 472 236 404 232" fill="none" stroke="url(#brass)" stroke-width="16" stroke-linecap="round"/>
+            <!-- body -->
+            <path d="M44 152 Q46 308 240 332 Q434 308 436 152 Z" fill="url(#brass)"/>
+            <path d="M96 190 Q104 280 196 312" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="9" stroke-linecap="round"/>
+            <path d="M48 206 Q240 250 432 206" fill="none" stroke="#2a1706" stroke-opacity=".35" stroke-width="3"/>
+            <path d="M54 236 Q240 284 426 236" fill="none" stroke="#2a1706" stroke-opacity=".35" stroke-width="3"/>
+            <!-- back rim -->
+            <ellipse cx="240" cy="152" rx="196" ry="34" fill="#2b1805"/>
+            <ellipse cx="240" cy="152" rx="196" ry="34" fill="none" stroke="url(#brass)" stroke-width="9"/>
+            <!-- rice -->
+            <g class="contents">
+              <path d="M62 152 Q80 58 240 50 Q400 58 418 152 Q240 198 62 152 Z" fill="url(#rice)"/>
+              <g id="grains" clip-path="url(#moundClip)"></g>
+            </g>
+            <!-- front lip -->
+            <path d="M46 156 Q240 214 434 156" fill="none" stroke="url(#brass)" stroke-width="16" stroke-linecap="round"/>
+            <!-- dough-sealed lid -->
+            <g class="lid">
+              <ellipse cx="240" cy="152" rx="204" ry="38" fill="url(#dough)"/>
+              <path d="M70 150 Q70 40 240 30 Q410 40 410 150 Q240 190 70 150Z" fill="url(#brass)"/>
+              <path d="M110 120 Q130 62 200 48" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="240" cy="22" r="14" fill="url(#brass)"/>
+            </g>
+          </svg>
+
+          <div id="ings"></div>
+
+          <svg class="badge" viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="circ" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs>
+            <text><textPath href="#circ" textLength="270" lengthAdjust="spacing">Sealed in dough • Slow dum • Pure veg •</textPath></text>
+            <circle class="core" cx="60" cy="60" r="9"/>
+          </svg>
+        </div>
+
+        <!-- giant word -->
+        <div class="giant" id="giant" aria-hidden="true"></div>
+
+        <!-- right index -->
+        <nav class="table" aria-label="The table — all biryanis">
+          <h3>THE TABLE</h3>
+          <ul id="tableList"></ul>
+        </nav>
+
+        <!-- bottom hint + progress -->
+        <div class="hint"><span>Scroll to serve the next dish</span><div class="bar"><i id="barI"></i></div></div>
+      </div>
+    </section>
+
+    <!-- OUTRO / FULL MENU -->
+    <section class="outro" id="menu">
+      <h2>Pick your pot</h2>
+      <p class="outro-sub">The full table — tap to add</p>
+      <ul id="menuList"></ul>
+    </section>
+    <footer class="foot">Veg Biryani House · 100% pure vegetarian · Made with love</footer>
+  </main>
+
+  <!-- ORDER DRAWER -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Your order">
+    <div class="drawer-head"><h3>Your order</h3><button id="closeCart" aria-label="Close">×</button></div>
+    <div class="cart-list" id="cartList"></div>
+    <div class="cart-total"><span>Total</span><span id="cartTotal">₹0</span></div>
+    <button class="checkout" id="checkout">Send order on WhatsApp</button>
+  </aside>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* ====================== DATA — edit dishes, prices, colours here ====================== */
+    const DISHES = [
+      { n1: "Veg Dum", n2: "Biryani", short: "Veg Dum", giant: "Dum", tag: "Signature · Pure veg", price: 249,
+        desc: "Garden vegetables and aged basmati, sealed in a handi and steamed on a slow flame until every grain drinks the masala.",
+        accent: "#f08a3c", rice1: "#f3c25b", rice2: "#c97a1d", ing: ["🥕","🥔","🌽","🌿","🧅","🌶️","🥦","🍋"] },
+      { n1: "Hyderabadi", n2: "Veg Biryani", short: "Hyderabadi", giant: "Hyderabadi", tag: "Most ordered", price: 279,
+        desc: "Kacchi-style layers of mint, curd and crisp birista, with a green-chilli heat that builds slowly.",
+        accent: "#ff6b35", rice1: "#f0a53a", rice2: "#b4491a", ing: ["🌶️","🧅","🌿","🍅","🥕","🧄","🍋","🌰"] },
+      { n1: "Paneer Tikka", n2: "Biryani", short: "Paneer Tikka", giant: "Tikka", tag: "Smoky favourite", price: 309,
+        desc: "Tandoor-charred paneer and capsicum folded into saffron rice, finished with kasuri methi and a knob of butter.",
+        accent: "#ff7a2f", rice1: "#f6b24a", rice2: "#d1581b", ing: ["🧀","🫑","🧅","🌶️","🍅","🌿","🍋","🧄"] },
+      { n1: "Awadhi Paneer", n2: "Dum Biryani", short: "Awadhi Paneer", giant: "Awadhi", tag: "Royal & mild", price: 289,
+        desc: "Soft paneer in a cashew-cream gravy, scented with rose, kewra and cardamom. Gentle, rich and fragrant.",
+        accent: "#e9b949", rice1: "#f7e2a6", rice2: "#d9a74a", ing: ["🧀","🥛","🌹","🥜","🌿","🧈","🌰","🍯"] },
+      { n1: "Paneer 65", n2: "Biryani", short: "Paneer 65", giant: "Crispy", tag: "Spicy · South Indian", price: 309,
+        desc: "Crisp curry-leaf paneer 65 tossed through seeraga rice with ginger, chilli and a squeeze of lemon.",
+        accent: "#ff4d3a", rice1: "#e9552e", rice2: "#8f1d12", ing: ["🧀","🌶️","🌿","🍋","🧄","🧅","🍅","🌶️"] },
+      { n1: "Mushroom", n2: "Pepper Biryani", short: "Mushroom Pepper", giant: "Mushroom", tag: "Chettinad style", price: 279,
+        desc: "Earthy button mushrooms sautéed with black pepper, fennel and roasted coconut.",
+        accent: "#d9a066", rice1: "#c9a47a", rice2: "#6b4a2d", ing: ["🍄","🍄","🧄","🌿","🧅","🌶️","🥜","🍋"] },
+      { n1: "Soya Chaap", n2: "Biryani", short: "Soya Chaap", giant: "Chaap", tag: "High protein", price: 259,
+        desc: "Tandoori-marinated soya chaap with mint, curd and a smoky finish — the hearty vegetarian pick.",
+        accent: "#ff8a3d", rice1: "#e57f3b", rice2: "#8a3a14", ing: ["🍢","🌶️","🧅","🌿","🍋","🍅","🧄","🥛"] },
+      { n1: "Kolhapuri", n2: "Veg Biryani", short: "Kolhapuri", giant: "Kolhapuri", tag: "Extra hot", price: 279,
+        desc: "Fiery red Kolhapuri masala with potato, peas and roasted dry coconut. Not for the faint-hearted.",
+        accent: "#ff5a36", rice1: "#d63b1f", rice2: "#6e1409", ing: ["🌶️","🔥","🥔","🥥","🧅","🌿","🍅","🧄"] },
+      { n1: "Lucknowi", n2: "Subz Biryani", short: "Lucknowi Subz", giant: "Subz", tag: "Delicate & floral", price: 289,
+        desc: "Mixed vegetables in a whisper of rose, kewra and mace, layered with saffron and fried cashew.",
+        accent: "#f08aa0", rice1: "#f6dfb0", rice2: "#d6a85c", ing: ["🌹","🥜","🌿","🥕","🌼","🥛","🍯","🧅"] },
+      { n1: "Achari Paneer", n2: "Biryani", short: "Achari Paneer", giant: "Achari", tag: "Tangy special", price: 309,
+        desc: "Pickle-spiced paneer — mustard oil, fennel and nigella — sharp, tangy and unforgettable.",
+        accent: "#d9b72b", rice1: "#cfa429", rice2: "#6f5a0d", ing: ["🥒","🌶️","🍋","🧄","🌿","🥭","🧅","🧀"] }
+    ];
+
+    /* Replace with your WhatsApp number — country code, no "+" */
+    const WHATSAPP = "910000000000";
+
+    /* positions of the 8 floating ingredients (% of the visual box) */
+    const SLOTS = [
+      { l: 15, t: 30, sz: 1.0,  rot: -18, dp: 26, dl: .05 }, { l: 29, t: 11, sz: 1.25, rot: 12,  dp: 40, dl: .12 },
+      { l: 47, t: 3,  sz: .9,   rot: -8,  dp: 18, dl: .18 }, { l: 64, t: 9,  sz: 1.2,  rot: 20,  dp: 44, dl: .10 },
+      { l: 80, t: 24, sz: 1.0,  rot: -12, dp: 30, dl: .20 }, { l: 90, t: 44, sz: .8,   rot: 16,  dp: 16, dl: .26 },
+      { l: 6,  t: 48, sz: .85,  rot: -22, dp: 14, dl: .30 }, { l: 38, t: 20, sz: .8,   rot: 10,  dp: 22, dl: .34 }
+    ];
+
+    /* ====================== helpers ====================== */
+    const $ = (s, r = document) => r.querySelector(s);
+    const pad2 = (n) => String(n).padStart(2, "0");
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    const N = DISHES.length;
+    const stage = $("#stage"), track = $("#track"), visual = $("#visual"), copy = $("#copy"), giant = $("#giant");
+
+    /* ====================== build static pieces ====================== */
+    track.style.setProperty("--n", N);
+    DISHES.forEach((_, i) => {                       // scroll-snap anchors
+      const s = document.createElement("i"); s.className = "snap"; s.style.setProperty("--i", i); track.prepend(s);
+    });
+
+    $("#tableList").innerHTML = DISHES.map((d, i) =>
+      `<li><button data-go="${i}"><span>${pad2(i + 1)}</span><span>${d.short}</span></button></li>`).join("");
+
+    $("#menuList").innerHTML = DISHES.map((d, i) =>
+      `<li class="menu-row" style="--row:${d.accent}">
+         <span class="n">${pad2(i + 1)}</span>
+         <span class="t">${d.n1} <em>${d.n2}</em><small>${d.tag}</small></span>
+         <span class="p">₹${d.price}</span>
+         <button data-add="${i}">+ Add</button>
+       </li>`).join("");
+
+    $("#ings").innerHTML = SLOTS.map((s, i) =>
+      `<span class="ing" style="--l:${s.l}%;--t:${s.t}%;--sz:${s.sz};--rot:${s.rot}deg;--dp:${s.dp};--dl:${s.dl}s">
+         <span class="ing-p"><span class="ing-f" style="--bt:${(4 + (i % 4) * .9).toFixed(1)}s;--bd:${(-i * .6).toFixed(1)}s"></span></span>
+       </span>`).join("");
+    const ingEls = [...document.querySelectorAll(".ing-f")];
+
+    /* rice grains + fried-onion flecks (seeded so it looks the same every load) */
+    (function grains() {
+      let a = 7; const rnd = () => ((a = (a * 16807) % 2147483647) / 2147483647);
+      let svg = "";
+      for (let i = 0; i < 90; i++) {
+        const x = 70 + rnd() * 340, y = 52 + rnd() * 130, r = rnd() * 180;
+        svg += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="5.5" ry="1.9" transform="rotate(${r.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" fill="#fff8e1" opacity="${(.25 + rnd() * .4).toFixed(2)}"/>`;
+      }
+      for (let i = 0; i < 26; i++) {
+        const x = 80 + rnd() * 320, y = 60 + rnd() * 110;
+        svg += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="4" ry="2.2" fill="#4a2208" opacity=".55"/>`;
+      }
+      for (let i = 0; i < 14; i++) {
+        const x = 90 + rnd() * 300, y = 62 + rnd() * 100;
+        svg += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="5" ry="2.4" fill="#3f8a4a" opacity=".7"/>`;
+      }
+      $("#grains").innerHTML = svg;
+    })();
+
+    /* ====================== apply one dish to the UI ====================== */
+    function fitGiant() {
+      giant.style.fontSize = "";
+      const base = parseFloat(getComputedStyle(giant).fontSize);
+      const max = innerWidth * (innerWidth > 860 ? 0.8 : 0.94);
+      const w = giant.getBoundingClientRect().width;
+      if (w > max) giant.style.fontSize = (base * max / w) + "px";
+    }
+    function renderGiant(word) {
+      giant.innerHTML = [...word].map((ch, j) => `<span style="--j:${j}">${ch}</span>`).join("");
+      fitGiant();
+    }
+    function applyDish(i) {
+      const d = DISHES[i];
+      stage.style.setProperty("--accent", d.accent);
+      stage.style.setProperty("--rice1", d.rice1);
+      stage.style.setProperty("--rice2", d.rice2);
+      $("#numV").textContent = pad2(i + 1);
+      $("#numT").textContent = "/ " + pad2(N);
+      $("#tagV").textContent = d.tag;
+      $("#n1").textContent = d.n1;
+      $("#n2").textContent = d.n2;
+      $("#descV").textContent = d.desc;
+      $("#priceV").textContent = d.price;
+      ingEls.forEach((el, k) => (el.textContent = d.ing[k % d.ing.length]));
+      document.querySelectorAll(".table button").forEach((b, k) => b.classList.toggle("on", k === i));
+      copy.classList.remove("swap"); void copy.offsetWidth; copy.classList.add("swap");
+    }
+
+    /* ====================== dish switching: lid drops → swap → lid lifts ====================== */
+    let current = -1, target = 0, busy = false, started = false;
+    function go(i) { target = i; if (started && !busy) run(); }
+    async function run() {
+      busy = true;
+      while (current !== target) {
+        const next = target;
+        stage.classList.remove("revealed"); stage.classList.add("sealed");
+        await wait(current < 0 ? 80 : 520);
+        applyDish(next); current = next;
+        renderGiant(DISHES[next].giant);
+        await wait(80);
+        stage.classList.remove("sealed"); stage.classList.add("revealed");
+        await wait(900);
+      }
+      busy = false;
+    }
+
+    /* ====================== scroll progress ====================== */
+    const barI = $("#barI");
+    function onScroll() {
+      const top = track.getBoundingClientRect().top + scrollY;
+      const travel = Math.max(1, track.offsetHeight - innerHeight);
+      const p = Math.min(1, Math.max(0, (scrollY - top) / travel));
+      barI.style.width = p * 100 + "%";
+      go(Math.round(p * (N - 1)));
+    }
+    let ticking = false;
+    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); } }, { passive: true });
+    addEventListener("resize", () => { fitGiant(); });
+    document.fonts && document.fonts.ready.then(fitGiant);
+
+    $(".table").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-go]"); if (!b) return;
+      const top = track.getBoundingClientRect().top + scrollY;
+      scrollTo({ top: top + (+b.dataset.go) * innerHeight, behavior: "smooth" });
+    });
+
+    /* mouse parallax for ingredients + pot */
+    stage.addEventListener("pointermove", (e) => {
+      if (e.pointerType === "touch") return;
+      const r = stage.getBoundingClientRect();
+      visual.style.setProperty("--mx", ((e.clientX - r.left) / r.width - .5) * 2);
+      visual.style.setProperty("--my", ((e.clientY - r.top) / r.height - .5) * 2);
+    });
+    stage.addEventListener("pointerleave", () => { visual.style.setProperty("--mx", 0); visual.style.setProperty("--my", 0); });
+
+    /* ====================== order / cart ====================== */
+    const cart = {};
+    const cartCount = $("#cartCount");
+    function addDish(i) {
+      cart[i] = (cart[i] || 0) + 1;
+      renderCart(); toast(DISHES[i].short + " added");
+      cartCount.classList.remove("bump"); void cartCount.offsetWidth; cartCount.classList.add("bump");
+    }
+    function renderCart() {
+      const ids = Object.keys(cart);
+      let total = 0, count = 0;
+      $("#cartList").innerHTML = ids.length ? ids.map((id) => {
+        const d = DISHES[id], q = cart[id]; total += d.price * q; count += q;
+        return `<div class="cart-item"><div class="info"><strong>${d.n1} ${d.n2}</strong><small>₹${d.price * q}</small></div>
+          <div class="qty"><button data-dec="${id}">−</button><span>${q}</span><button data-inc="${id}">+</button></div></div>`;
+      }).join("") : `<p class="cart-empty">Your order is empty.<br/>Scroll the table and add a biryani.</p>`;
+      $("#cartTotal").textContent = "₹" + total;
+      cartCount.textContent = count;
+    }
+    $("#cartList").addEventListener("click", (e) => {
+      const inc = e.target.dataset.inc, dec = e.target.dataset.dec;
+      if (inc) cart[inc]++;
+      if (dec && --cart[dec] <= 0) delete cart[dec];
+      if (inc || dec) renderCart();
+    });
+    $("#addBtn").addEventListener("click", (e) => {
+      addDish(current);
+      const b = e.currentTarget; b.textContent = "Added ✓"; setTimeout(() => (b.textContent = "Add to order +"), 1200);
+    });
+    $("#menuList").addEventListener("click", (e) => { const b = e.target.closest("[data-add]"); if (b) addDish(+b.dataset.add); });
+
+    const drawer = $("#drawer"), overlay = $("#overlay");
+    const openCart = () => { drawer.classList.add("open"); overlay.classList.add("open"); };
+    const closeCart = () => { drawer.classList.remove("open"); overlay.classList.remove("open"); };
+    $("#openCart").onclick = openCart; $("#closeCart").onclick = closeCart; overlay.onclick = closeCart;
+    addEventListener("keydown", (e) => e.key === "Escape" && closeCart());
+    $("#checkout").onclick = () => {
+      const ids = Object.keys(cart);
+      if (!ids.length) return toast("Add a biryani first");
+      const lines = ids.map((id) => `• ${cart[id]} × ${DISHES[id].n1} ${DISHES[id].n2} — ₹${DISHES[id].price * cart[id]}`);
+      const total = ids.reduce((s, id) => s + DISHES[id].price * cart[id], 0);
+      open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi! I'd like to order:\n" + lines.join("\n") + "\nTotal: ₹" + total)}`, "_blank");
+    };
+    let tt;
+    function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 1700); }
+
+    /* ====================== loader: "Lifting the lid" ====================== */
+    (function loader() {
+      const num = $("#lnum"), bar = $("#lbar"), el = $("#loader"), t0 = performance.now(), dur = 2200;
+      function tick(t) {
+        const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        num.textContent = Math.round(e * 100); bar.style.transform = `scaleX(${e})`;
+        if (k < 1) requestAnimationFrame(tick); else finish();
+      }
+      async function finish() {
+        await wait(450);
+        el.classList.add("done"); document.body.classList.remove("loading");
+        started = true; onScroll(); go(target);
+        setTimeout(() => el.remove(), 1300);
+      }
+      requestAnimationFrame(tick);
+    })();
+    renderCart();
+  </script>
+</body>
+</html>
