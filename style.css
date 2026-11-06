@@ -133,9 +133,10 @@ ul { list-style: none; }
 .add:hover { color: var(--accent); border-color: var(--accent); }
 
 /* ---------- visual ---------- */
+/* no transform / z-index here on purpose: it lets the photos use mix-blend-mode and drop their black backdrop */
 .visual {
-  position: absolute; z-index: 2; left: 50%; bottom: clamp(60px, 14vh, 150px);
-  width: min(50vw, 78vh); aspect-ratio: 480 / 430; transform: translateX(-50%);
+  position: absolute; left: 0; right: 0; margin-inline: auto; bottom: clamp(0px, 2vh, 20px);
+  width: min(58vw, 88vh); aspect-ratio: 1;
 }
 .pot {
   position: absolute; left: 0; bottom: 0; width: 100%; height: auto; overflow: visible;
@@ -147,6 +148,52 @@ ul { list-style: none; }
 .stage.sealed .contents { transform: scale(.9); transition-duration: .3s; transition-delay: 0s; }
 .lid { transform-box: fill-box; transform-origin: 50% 100%; opacity: 0; transform: translate(70px, -190px) rotate(16deg); transition: transform 1s cubic-bezier(.2, .8, .2, 1), opacity .5s ease .3s; }
 .stage.sealed .lid { opacity: 1; transform: none; transition: transform .45s cubic-bezier(.5, 0, .8, .4), opacity .1s; }
+
+
+/* ---------- photo mode (images/dish-XX.jpg + images/pot-closed.jpg) ----------
+   closed pot = body layer + lid layer (same photo, split by a soft elliptical mask).
+   open  : lid lifts and tilts away, a bloom of steam fires, the dish photo rises in.
+   close : the dish sinks and blurs out, the lid drops back onto the dough seal.        */
+.dish, .pot-body, .pot-lid {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: none;
+  mix-blend-mode: screen; pointer-events: none; user-select: none;
+  translate: calc(var(--mx, 0) * -10px) calc(var(--my, 0) * -6px);
+}
+.stage.has-img .dish, .stage.has-img .pot-body, .stage.has-img .pot-lid { display: block; }
+.stage.has-img .pot, .stage.has-img .ing { display: none; }
+
+.dish {
+  -webkit-mask-image: radial-gradient(closest-side, #000 88%, transparent 100%);
+          mask-image: radial-gradient(closest-side, #000 88%, transparent 100%);
+  opacity: 1; transform: none; filter: none;
+  transition: opacity .7s ease .3s, transform 1.2s cubic-bezier(.2, .8, .2, 1) .3s, filter 1s ease .3s, translate .25s ease-out;
+}
+.pot-body {
+  opacity: 0;
+  -webkit-mask-image: radial-gradient(ellipse 44% 25% at 50% 35%, #000 85%, transparent 100%), linear-gradient(#000, #000);
+          mask-image: radial-gradient(ellipse 44% 25% at 50% 35%, #000 85%, transparent 100%), linear-gradient(#000, #000);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  transition: opacity .6s ease .15s, translate .25s ease-out;
+}
+.pot-lid {
+  opacity: 0; transform-origin: 50% 40%;
+  transform: translateY(-20%) rotate(9deg) scale(1.04);
+  -webkit-mask-image: radial-gradient(ellipse 44% 25% at 50% 35%, #000 85%, transparent 100%);
+          mask-image: radial-gradient(ellipse 44% 25% at 50% 35%, #000 85%, transparent 100%);
+  transition: transform 1s cubic-bezier(.16, .84, .3, 1), opacity .55s ease .3s, translate .25s ease-out;
+}
+.stage.sealed .dish { opacity: 0; transform: scale(.93) translateY(3%); filter: blur(9px); transition: opacity .25s ease, transform .4s ease, filter .3s ease, translate .25s ease-out; }
+.stage.sealed .pot-body { opacity: 1; transition: opacity .2s ease, translate .25s ease-out; }
+.stage.sealed .pot-lid  { opacity: 1; transform: none; transition: transform .5s cubic-bezier(.55, 0, .75, .35), opacity .12s ease, translate .25s ease-out; }
+
+.bloom {
+  position: absolute; left: 50%; top: 36%; width: 76%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 40%, #fff1d6) 0%, transparent 62%);
+  mix-blend-mode: screen; opacity: 0; pointer-events: none; display: none;
+}
+.stage.has-img .bloom { display: block; }
+.stage.revealed .bloom { animation: bloom 1.4s ease-out .1s both; }
+@keyframes bloom { 0% { opacity: 0; scale: .4; } 22% { opacity: .9; } 100% { opacity: 0; scale: 1.55; } }
 
 /* steam */
 .steam { position: absolute; z-index: 1; left: 50%; top: 4%; width: 44%; height: 34%; transform: translateX(-50%); pointer-events: none; opacity: 0; transition: opacity 1s ease .4s; }
@@ -255,7 +302,7 @@ ul { list-style: none; }
 
 /* ============================ RESPONSIVE ============================ */
 @media (max-width: 860px) {
-  .copy { top: calc(clamp(16px, 3.4vh, 34px) + 44px); transform: none; width: calc(100% - 2 * var(--pad)); min-width: 0; }
+  .copy { top: calc(clamp(16px, 3.4vh, 34px) + 54px); transform: none; width: calc(100% - 2 * var(--pad)); min-width: 0; }
   .num { font-size: 3.4rem; }
   .num small { margin-top: .7em; }
   .tag { margin: 10px 0 12px; }
@@ -265,9 +312,9 @@ ul { list-style: none; }
   .buy { margin-top: 14px; gap: 18px; }
   .price { font-size: 1.5rem; }
   .table { display: none; }
-  .visual { width: min(100vw, 66vh); bottom: clamp(70px, 15vh, 140px); }
+  .visual { width: min(112vw, 66vh); bottom: clamp(40px, 10vh, 110px); }
   .giant { bottom: clamp(40px, 8vh, 90px); }
-  .badge { right: 4%; top: -4%; width: 64px; }
+  .badge { right: 15%; top: 2%; width: 64px; }
   .hint { font-size: 8.5px; letter-spacing: .18em; gap: 12px; }
   .menu-row { grid-template-columns: 38px 1fr auto; }
   .menu-row .p { display: none; }
@@ -275,5 +322,5 @@ ul { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-snap-type: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
-  .ing-f, .steam i, .badge { animation: none !important; }
+  .ing-f, .steam i, .badge, .bloom { animation: none !important; }
 }

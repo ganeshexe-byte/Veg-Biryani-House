@@ -51,6 +51,11 @@
 
         <!-- centre visual -->
         <div class="visual" id="visual">
+          <!-- photo mode: closed pot (body + lid) and the open dish. Hidden until the images exist -->
+          <img class="pot-body" id="potBody" alt="" />
+          <img class="dish" id="dishImg" alt="" />
+          <img class="pot-lid" id="potLid" alt="" />
+          <div class="bloom"></div>
           <div class="steam"><i></i><i></i><i></i></div>
 
           <svg class="pot" viewBox="0 0 480 360" aria-hidden="true">
@@ -174,6 +179,11 @@
         accent: "#d9b72b", rice1: "#cfa429", rice2: "#6f5a0d", ing: ["🥒","🌶️","🍋","🧄","🌿","🥭","🧅","🧀"] }
     ];
 
+    /* Photos: images/dish-01.jpg ... dish-10.jpg (same order as DISHES) and images/pot-closed.jpg.
+       Shot on a pure black background; the page blends the black away. Missing photos fall back to the drawn pot. */
+    const CLOSED_IMG = "images/pot-closed.jpg";
+    DISHES.forEach((d, i) => (d.img = `images/dish-${String(i + 1).padStart(2, "0")}.jpg`));
+
     /* Replace with your WhatsApp number — country code, no "+" */
     const WHATSAPP = "910000000000";
 
@@ -246,8 +256,17 @@
       giant.innerHTML = [...word].map((ch, j) => `<span style="--j:${j}">${ch}</span>`).join("");
       fitGiant();
     }
+    const loadImg = (src) => new Promise((res) => { const im = new Image(); im.onload = () => res(true); im.onerror = () => res(false); im.src = src; });
+    let closedOk = false;
+    const preload = Promise.all([loadImg(CLOSED_IMG), ...DISHES.map((d) => loadImg(d.img))]).then((r) => {
+      closedOk = r[0]; DISHES.forEach((d, k) => (d.ok = r[k + 1]));
+      if (closedOk) { $("#potBody").src = CLOSED_IMG; $("#potLid").src = CLOSED_IMG; }
+    });
     function applyDish(i) {
       const d = DISHES[i];
+      const photo = closedOk && d.ok;
+      stage.classList.toggle("has-img", photo);
+      if (photo) $("#dishImg").src = d.img;
       stage.style.setProperty("--accent", d.accent);
       stage.style.setProperty("--rice1", d.rice1);
       stage.style.setProperty("--rice2", d.rice2);
@@ -365,6 +384,7 @@
         if (k < 1) requestAnimationFrame(tick); else finish();
       }
       async function finish() {
+        await Promise.race([preload, wait(4000)]);
         await wait(450);
         el.classList.add("done"); document.body.classList.remove("loading");
         started = true; onScroll(); go(target);

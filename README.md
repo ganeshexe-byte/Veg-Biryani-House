@@ -7,8 +7,9 @@ Keep `index.html` and `style.css` in the same folder and open `index.html` in a 
 
 ## What's inside
 - "Lifting the lid" loader (0 to 100%)
-- Full-screen scroll showcase of 10 vegetarian biryanis, with the lid lifting between dishes
-- Giant gradient word, floating ingredients with mouse parallax, "The Table" index
+- Full-screen scroll showcase of 10 vegetarian biryanis. Between dishes the dough-sealed pot closes, then the lid lifts with a steam bloom and the photo rises in
+- Giant gradient word, mouse parallax, "The Table" index
+- Photo mode: real dish photos in `images/` (see `images/README.md`); falls back to a drawn pot when photos are missing
 - Order panel that sends the order to WhatsApp
 
 ## Customise
