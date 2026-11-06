@@ -1,6 +1,6 @@
 # Dish photos
 
-Drop the AI-generated photos here. File names must match exactly:
+AI-generated photos used by the site. File names must match exactly:
 
 | File | Dish |
 |---|---|

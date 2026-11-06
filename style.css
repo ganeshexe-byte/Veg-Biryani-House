@@ -123,7 +123,7 @@ ul { list-style: none; }
 .tag { display: flex; align-items: center; gap: 9px; margin: 16px 0 18px; font: 500 10px var(--f-mono); letter-spacing: .22em; text-transform: uppercase; color: var(--accent); }
 .veg-dot { width: 13px; height: 13px; border: 1.5px solid #4fb36a; border-radius: 3px; display: inline-grid; place-items: center; flex: none; }
 .veg-dot::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #4fb36a; }
-.name { font: 400 clamp(2.1rem, 3.5vw, 3.3rem)/1.02 var(--f-serif); letter-spacing: -.01em; }
+.name { font: 400 clamp(2.1rem, 3.2vw, 3rem)/1.02 var(--f-serif); letter-spacing: -.01em; }
 .name em { display: block; color: var(--accent); }
 .desc { margin-top: 18px; max-width: 34ch; font-size: .92rem; line-height: 1.65; color: #c9beb3; }
 .buy { display: flex; align-items: center; gap: 24px; margin-top: 26px; }
@@ -136,7 +136,7 @@ ul { list-style: none; }
 /* no transform / z-index here on purpose: it lets the photos use mix-blend-mode and drop their black backdrop */
 .visual {
   position: absolute; left: 0; right: 0; margin-inline: auto; bottom: clamp(0px, 2vh, 20px);
-  width: min(58vw, 88vh); aspect-ratio: 1;
+  width: min(55vw, 85vh); aspect-ratio: 1;
 }
 .pot {
   position: absolute; left: 0; bottom: 0; width: 100%; height: auto; overflow: visible;
